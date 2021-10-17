@@ -9,6 +9,7 @@ class Bert(nn.Module):
     def __init__(self, bert_type='bertbase'):
         super(Bert, self).__init__()
         self.bert_type = bert_type
+        self.model = None 
 
         if bert_type == 'bertbase':
             configuration = BertConfig()
