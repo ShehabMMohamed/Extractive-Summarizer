@@ -17,7 +17,9 @@ class Bert(nn.Module):
             configuration = DistilBertConfig()
             self.model = DistilBertModel(configuration)   
         elif bert_type == 'squeezebert':
-            self.model = SqueezeBertModel.from_pretrained('squeezebert/squeezebert-uncased')        
+            configuration = BertConfig()
+            self.model = BertModel(configuration)
+            # self.model = SqueezeBertModel.from_pretrained('squeezebert/squeezebert-uncased')        
         elif bert_type == 'mobilebert':
             configuration = MobileBertConfig.from_pretrained('checkpoints/mobilebert')
             self.model = MobileBertModel(configuration)  
