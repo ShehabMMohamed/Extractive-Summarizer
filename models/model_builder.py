@@ -17,14 +17,13 @@ class Bert(nn.Module):
             configuration = DistilBertConfig()
             self.model = DistilBertModel(configuration)   
         elif bert_type == 'squeezebert':
-            configuration = SqueezeBertConfig()
-            self.model = SqueezeBertModel(configuration)        
+            self.model = SqueezeBertModel()        
         elif bert_type == 'mobilebert':
             configuration = MobileBertConfig.from_pretrained('checkpoints/mobilebert')
             self.model = MobileBertModel(configuration)  
 
     def forward(self, x, segs, mask):
-        if self.bert_type == 'distilbert':
+        if self.bert_type == 'distilbert' or self.bert_type == 'squeezebert':
             top_vec = self.model(input_ids=x, attention_mask=mask)[0]
         else:
             top_vec, _ = self.model(x, attention_mask=mask, token_type_ids=segs)
