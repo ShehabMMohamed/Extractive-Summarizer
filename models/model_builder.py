@@ -9,7 +9,7 @@ class Bert(nn.Module):
     def __init__(self, bert_type='bertbase'):
         super(Bert, self).__init__()
         self.bert_type = bert_type
-        print("Loading Bert Type: {}".format(self.bert_type))
+        print("Loading Bert Type: {}\n".format(self.bert_type))
 
         if bert_type == 'bertbase':
             configuration = BertConfig()
@@ -18,10 +18,7 @@ class Bert(nn.Module):
             configuration = DistilBertConfig()
             self.model = DistilBertModel(configuration)   
         elif bert_type == 'squeezebert':
-            print("Inside SqueezeBERT\n")
-            configuration = BertConfig()
-            self.model = BertModel(configuration)
-            # self.model = SqueezeBertModel.from_pretrained('squeezebert/squeezebert-uncased')        
+            self.model = SqueezeBertModel.from_pretrained('squeezebert/squeezebert-uncased')        
         elif bert_type == 'mobilebert':
             configuration = MobileBertConfig.from_pretrained('checkpoints/mobilebert')
             self.model = MobileBertModel(configuration)  
