@@ -41,7 +41,7 @@ class ExtSummarizer(nn.Module):
         )
 
         if checkpoint is not None:
-            self.load_state_dict(checkpoint, strict=True)
+            self.load_state_dict(checkpoint['model'], strict=True)
 
         self.to(device)
 
